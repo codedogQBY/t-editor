@@ -1,0 +1,17 @@
+{
+  "name": "@t-editor/vue",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "prepare": "pnpm run build",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@rich-text-editor/core": "^0.0.1",
+    "vue": "^3.2.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.4"
+  }
+}

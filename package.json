@@ -1,0 +1,19 @@
+{
+  "name": "t-editor",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "prepare": "pnpm run -r prepare",
+    "build": "pnpm run -r build",
+    "test": "pnpm run -r test",
+    "lint": "pnpm run -r lint",
+    "create-package": "node scripts/create-package.js"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "lerna": "^8.1.9",
+    "typescript": "^5.6.3"
+  }
+}
