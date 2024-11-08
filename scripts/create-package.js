@@ -22,7 +22,11 @@ function createPackage(packageName) {
         dependencies: {},
         devDependencies: {
             typescript: '^5.6.3'
-        }
+        },
+        eslintConfig: {
+            extends: '../../.eslintrc.js'
+        },
+        prettier: '../../.prettierrc'
     };
 
     fs.writeFileSync(

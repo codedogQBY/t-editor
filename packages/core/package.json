@@ -10,5 +10,9 @@
   "dependencies": {},
   "devDependencies": {
     "typescript": "^4.5.4"
-  }
+  },
+  "eslintConfig": {
+    "extends": "../../.eslintrc.js"
+  },
+  "prettier": "../../.prettierrc"
 }
