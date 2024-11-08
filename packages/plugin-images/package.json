@@ -1,5 +1,5 @@
 {
-  "name": "@rich-text-editor/plugin-images",
+  "name": "@t-editor/plugin-images",
   "version": "0.0.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

@@ -1,5 +1,5 @@
 {
-  "name": "@rich-text-editor/plugin-basic-marks",
+  "name": "@t-editor/plugin-basic-marks",
   "version": "0.0.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -7,7 +7,9 @@
     "prepare": "pnpm run build",
     "build": "tsc"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@t-editor/core": "workspace:*"
+  },
   "devDependencies": {
     "typescript": "^5.6.3"
   },

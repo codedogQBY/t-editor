@@ -8,7 +8,7 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@rich-text-editor/core": "^0.0.1",
+    "@t-editor/core": "^0.0.1",
     "vue": "^3.2.0"
   },
   "devDependencies": {

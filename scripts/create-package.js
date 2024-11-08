@@ -11,7 +11,7 @@ function createPackage(packageName) {
 
     // Create package.json
     const packageJson = {
-        name: `@rich-text-editor/${packageName}`,
+        name: `@t-editor/${packageName}`,
         version: '0.0.1',
         main: 'dist/index.js',
         types: 'dist/index.d.ts',
@@ -19,7 +19,9 @@ function createPackage(packageName) {
             prepare: 'pnpm run build',
             build: 'tsc'
         },
-        dependencies: {},
+        dependencies: {
+            '@t-editor/core': 'workspace:*'
+        },
         devDependencies: {
             typescript: '^5.6.3'
         },
@@ -41,7 +43,12 @@ function createPackage(packageName) {
             outDir: './dist',
             rootDir: './src'
         },
-        include: ['src']
+        include: [
+            'src'
+        ],
+        references: [
+            { path: '../core' }
+        ]
     };
 
     fs.writeFileSync(

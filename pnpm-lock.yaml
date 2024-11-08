@@ -34,14 +34,32 @@ importers:
     devDependencies:
       typescript: 4.9.5
 
+  packages/plugin-basic-marks:
+    specifiers:
+      typescript: ^5.6.3
+    devDependencies:
+      typescript: 5.6.3
+
+  packages/plugin-images:
+    specifiers:
+      typescript: ^5.6.3
+    devDependencies:
+      typescript: 5.6.3
+
+  packages/plugin-lists:
+    specifiers:
+      typescript: ^5.6.3
+    devDependencies:
+      typescript: 5.6.3
+
   packages/react:
     specifiers:
-      '@rich-text-editor/core': ^0.0.1
+      '@t-editor/core': ^0.0.1
       '@types/react': ^17.0.38
       react: ^17.0.2
       typescript: ^4.5.4
     dependencies:
-      '@rich-text-editor/core': link:../core
+      '@t-editor/core': link:../core
       react: 17.0.2
     devDependencies:
       '@types/react': 17.0.83
@@ -49,11 +67,11 @@ importers:
 
   packages/vue:
     specifiers:
-      '@rich-text-editor/core': ^0.0.1
+      '@t-editor/core': ^0.0.1
       typescript: ^4.5.4
       vue: ^3.2.0
     dependencies:
-      '@rich-text-editor/core': link:../core
+      '@t-editor/core': link:../core
       vue: 3.5.12_typescript@4.9.5
     devDependencies:
       typescript: 4.9.5
