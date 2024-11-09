@@ -4,6 +4,7 @@ import { EventManager} from './EventManager';
  * Manager基类
  */
 abstract class IManager {
+  static key: string;
   private eventManager: EventManager;
 
   constructor(eventManager: EventManager, ...args: any[]) {

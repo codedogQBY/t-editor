@@ -2,6 +2,8 @@ import { IManager } from '../IManager';
 import { EventManager} from '../EventManager';
 
 class SelectionManager extends IManager {
+  static  override key = 'selection' as const;
+
   private currentSelection: Selection | null = null;
 
   constructor(eventManager: EventManager) {

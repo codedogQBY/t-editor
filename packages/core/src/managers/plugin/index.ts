@@ -3,6 +3,7 @@ import { IManager } from '../IManager';
 import { EventManager} from '../EventManager';
 
 class PluginManager extends IManager {
+  static  override key = 'plugin' as const;
   private plugins: Plugin[] = [];
   private readonly editor: Editor;
   private pluginMap: Map<string, Plugin> = new Map();

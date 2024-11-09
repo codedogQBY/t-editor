@@ -3,6 +3,7 @@ import { IManager } from '../IManager';
 import { EventManager} from '../EventManager';
 
 class HistoryManager extends IManager {
+  static  override key = 'history' as const;
   private undoStack: EditorState[] = [];
   private redoStack: EditorState[] = [];
 

@@ -5,6 +5,7 @@ import { SchemaManager } from './managers/schema';
 import { SelectionManager } from './managers/selection';
 import { PluginManager } from './managers/plugin';
 import { EditorOptions } from './types';
+import { registerManager } from './managers/types';
 
 
 export class Editor {
@@ -14,12 +15,14 @@ export class Editor {
     this.coreManager = new CoreManager();
 
     // 注册所有必要的 managers
-    this.coreManager
-      .registerManager('command', CommandManager)
-      .registerManager('history', HistoryManager)
-      .registerManager('schema', SchemaManager)
-      .registerManager('selection', SelectionManager)
-      .registerManager('plugin', PluginManager);
+    // this.coreManager
+    //   .registerManager('command', CommandManager)
+    //   .registerManager('history', HistoryManager)
+    //   .registerManager('schema', SchemaManager)
+    //   .registerManager('selection', SelectionManager)
+    //   .registerManager('plugin', PluginManager);
+
+    registerManager(this.coreManager);
 
     // 初始化 CoreManager
     this.coreManager.init();

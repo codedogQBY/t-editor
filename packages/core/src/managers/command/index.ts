@@ -6,6 +6,7 @@ interface Command {
 }
 
 class CommandManager extends IManager {
+  static  override key = 'command' as const;
   private commands: Map<string, Command> = new Map();
 
   constructor(eventManager: EventManager) {
