@@ -6,6 +6,7 @@ interface Command {
 }
 
 class CommandManager extends IManager {
+  public static readonly MANAGER_NAME = 'command' as const;
   private commands: Map<string, Command> = new Map();
 
   constructor(eventManager: EventManager) {

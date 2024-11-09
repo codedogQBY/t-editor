@@ -1,11 +1,10 @@
 import { EventManager } from './EventManager';
 import { IManager } from './IManager';
+import { ManagerConstructor, ManagerName } from './types';
 
-type BaseManagerType = IManager | EventManager;
-type ManagerConstructor<T extends IManager> = new (eventManager: EventManager, ...args: any[]) => T;
-
+type ManagerType = ManagerConstructor<IManager> | IManager | EventManager;
 class CoreManager {
-  private managers: Map<string, BaseManagerType> = new Map();
+  private managers: Map<ManagerName, ManagerType> = new Map();
   private readonly eventManager: EventManager;
 
   constructor() {
@@ -28,7 +27,7 @@ class CoreManager {
   /**
    * 获取Manager
    */
-  getManager<T extends BaseManagerType>(name: string): T | undefined {
+  getManager<T extends ManagerType>(name: ManagerName): T | undefined {
     return this.managers.get(name) as T;
   }
 
@@ -36,7 +35,7 @@ class CoreManager {
    * 替换Manager
    */
   replaceManager<T extends IManager>(
-    name: string,
+    name: ManagerName,
     Manager: ManagerConstructor<T>
   ): this{
     // 如果Manager不存在，则直接注册
@@ -54,7 +53,7 @@ class CoreManager {
   /**
    * 销毁Manager
    */
-  destroyManager(name: string) {
+  destroyManager(name: ManagerName) {
     const manager = this.managers.get(name);
     if (!manager) {
       return this;
@@ -80,7 +79,7 @@ class CoreManager {
   /**
    * 初始化Manager
    */
-  initManager(name: string) {
+  initManager(name: ManagerName) {
     const manager = this.managers.get(name);
     if (manager instanceof IManager) {
       manager.init();

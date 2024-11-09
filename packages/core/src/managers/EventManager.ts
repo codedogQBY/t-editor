@@ -1,4 +1,5 @@
 class EventManager {
+  public static readonly MANAGER_NAME = 'event' as const;
   private events: Map<string, Set<Function>> = new Map();
 
   public on(event: string, handler: Function): void {

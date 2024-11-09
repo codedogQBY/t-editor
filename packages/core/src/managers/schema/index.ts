@@ -3,6 +3,7 @@ import { IManager } from '../IManager';
 import { EventManager} from '../EventManager';
 
 class SchemaManager extends IManager {
+  public static readonly MANAGER_NAME = 'schema' as const
   private schema: Schema;
 
   constructor(eventManager: EventManager, schema: Schema) {

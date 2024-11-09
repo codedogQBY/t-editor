@@ -1,32 +1,19 @@
-import { CoreManager } from './index';
-import {CommandManager} from './command';
-import {HistoryManager} from './history';
-import {PluginManager} from './plugin';
-import {SchemaManager} from './schema';
-import {SelectionManager} from './selection';
+import * as ManagerConfig from './manager.config';
 import { IManager } from './IManager';
+import { EventManager } from './EventManager';
 
-const ManagerKeys = {
-  COMMAND: 'command',
-  HISTORY: 'history',
-  PLUGIN: 'plugin',
-  SCHEMA: 'schema',
-  SELECTION: 'selection'
-} as const;
-
-type DefaultManagerKeys = typeof ManagerKeys[keyof typeof ManagerKeys];
-
-interface TypedCoreManager extends CoreManager {
-  getManager(key: 'command'): CommandManager | undefined;
-  getManager(key: 'history'): HistoryManager | undefined;
-  getManager(key: 'plugin'): PluginManager | undefined;
-  getManager(key: 'schema'): SchemaManager | undefined;
-  getManager(key: 'selection'): SelectionManager | undefined;
-  getManager<T extends IManager>(key: string): T | undefined;
-}
+type ManagerConstructor<T extends IManager> = new (eventManager: EventManager, ...args: any[]) => T;
+type ManagerMap = {
+  [key in typeof ManagerConfig[keyof typeof ManagerConfig]['MANAGER_NAME']]: ManagerConstructor<IManager>;
+};
+type DefaultManagerName = keyof ManagerMap;
+type ManagerName = DefaultManagerName | string;
+type GetManagerByName<T extends ManagerName> = T extends DefaultManagerName ? ManagerMap[T] : ManagerConstructor<IManager>;
 
 export {
-  TypedCoreManager,
-  ManagerKeys,
-  DefaultManagerKeys
+  ManagerName,
+  DefaultManagerName,
+  ManagerMap,
+  ManagerConstructor,
+  GetManagerByName
 };
