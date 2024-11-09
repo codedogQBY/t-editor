@@ -1,7 +1,23 @@
-import { EditorState } from '../type';
-class HistoryManager {
+import { EditorState } from '../../types';
+import { IManager } from '../IManager';
+import { EventManager} from '../EventManager';
+
+class HistoryManager extends IManager {
   private undoStack: EditorState[] = [];
   private redoStack: EditorState[] = [];
+
+  constructor(eventManager: EventManager) {
+    super(eventManager);
+  }
+
+  init() {
+    // 初始化历史管理器
+  }
+
+  destroy() {
+    this.undoStack = [];
+    this.redoStack = [];
+  }
 
   push(state: EditorState) {
     this.undoStack.push(state);

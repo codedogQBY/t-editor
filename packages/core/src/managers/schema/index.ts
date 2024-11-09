@@ -1,9 +1,21 @@
-import { NodeType, Node } from '../type';
-class SchemaManager {
+import { NodeType, Node } from '../../types';
+import { IManager } from '../IManager';
+import { EventManager} from '../EventManager';
+
+class SchemaManager extends IManager {
   private schema: Schema;
 
-  constructor(schema: Schema) {
+  constructor(eventManager: EventManager, schema: Schema) {
+    super(eventManager);
     this.schema = schema;
+  }
+
+  init() {
+    // 初始化模式管理器
+  }
+
+  destroy() {
+    // 销毁模式管理器
   }
 
   isValidNode(node: Node): boolean {

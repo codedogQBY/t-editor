@@ -1,8 +1,8 @@
-import { CommandManager } from './commands';
-import { SelectionManager } from './selection';
-import { HistoryManager } from './history';
-import { SchemaManager } from './schema';
-import { PluginManager } from './plugins';
+import { CommandManager } from './managers/command';
+import { SelectionManager } from './managers/selection';
+import { HistoryManager } from './managers/history';
+import { SchemaManager } from './managers/schema';
+import { PluginManager } from './managers/plugin';
 // types.ts
 export interface EditorState {
   content: any;
@@ -65,3 +65,9 @@ export interface MarkSpec {
   // 标记规格的定义
 }
 
+export interface EditorOptions {
+  // 定义编辑器的配置选项
+  content?: string;
+  plugins?: string[];
+  // 其他选项...
+}

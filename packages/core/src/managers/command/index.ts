@@ -1,5 +1,24 @@
-class CommandManager {
+import { IManager } from '../IManager';
+import { EventManager} from '../EventManager';
+
+interface Command {
+  execute(...args: any[]): void;
+}
+
+class CommandManager extends IManager {
   private commands: Map<string, Command> = new Map();
+
+  constructor(eventManager: EventManager) {
+    super(eventManager);
+  }
+
+  init() {
+
+  }
+
+  destroy() {
+    this.commands.clear();
+  }
 
   register(name: string, command: Command) {
     this.commands.set(name, command);
@@ -16,10 +35,11 @@ class CommandManager {
   canExecute(name: string): boolean {
     return this.commands.has(name);
   }
+
+  getCommand(name: string): Command | undefined {
+    return this.commands.get(name);
+  }
 }
 
-interface Command {
-  execute(...args: any[]): void;
-}
 
 export { CommandManager, Command };

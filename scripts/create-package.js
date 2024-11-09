@@ -58,7 +58,7 @@ function createPackage(packageName) {
 
     // Create src directory and index.ts
     fs.mkdirSync(path.join(packagePath, 'src'));
-    fs.writeFileSync(path.join(packagePath, 'src', 'index.ts'), '// Your code here');
+    fs.writeFileSync(path.join(packagePath, 'src', 'index.ts'), '');
 
     console.log(`Package ${packageName} created successfully!`);
 }

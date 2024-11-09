@@ -1,5 +1,20 @@
-class SelectionManager {
+import { IManager } from '../IManager';
+import { EventManager} from '../EventManager';
+
+class SelectionManager extends IManager {
   private currentSelection: Selection | null = null;
+
+  constructor(eventManager: EventManager) {
+    super(eventManager);
+  }
+
+  init() {
+    // 初始化选择管理器
+  }
+
+  destroy() {
+    this.currentSelection = null;
+  }
 
   updateSelection(selection: Selection) {
     this.currentSelection = selection;

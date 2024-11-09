@@ -1,31 +1,67 @@
-import { CommandManager } from './commands';
-import { SelectionManager } from './selection';
-import { HistoryManager } from './history';
-import { SchemaManager } from './schema';
-import { PluginManager } from './plugins';
-import { Editor as TEditor, EditorState, Schema, EditorOptions, Plugin } from './type';
+import { CoreManager } from './managers';
+import { CommandManager } from './managers/command';
+import { HistoryManager } from './managers/history';
+import { SchemaManager } from './managers/schema';
+import { SelectionManager } from './managers/selection';
+import { PluginManager } from './managers/plugin';
+import { EditorOptions } from './types';
 
-export class Editor implements TEditor {
-  private commandManager: CommandManager;
-  private selectionManager: SelectionManager;
-  private historyManager: HistoryManager;
-  private schemaManager: SchemaManager;
-  private pluginManager: PluginManager;
+
+export class Editor {
+  private coreManager: CoreManager;
 
   constructor(options: EditorOptions) {
-    this.commandManager = new CommandManager(this);
-    this.selectionManager = new SelectionManager(this);
-    this.historyManager = new HistoryManager(this);
-    this.schemaManager = new SchemaManager(options.schema);
-    this.pluginManager = new PluginManager(this);
+    this.coreManager = new CoreManager();
+
+    // 注册所有必要的 managers
+    this.coreManager
+      .registerManager('command', CommandManager)
+      .registerManager('history', HistoryManager)
+      .registerManager('schema', SchemaManager)
+      .registerManager('selection', SelectionManager)
+      .registerManager('plugin', PluginManager);
+
+    // 初始化 CoreManager
+    this.coreManager.init();
+
+    // 应用编辑器选项
+    this.applyOptions(options);
   }
 
-  // 实现核心方法
+  private applyOptions(options: EditorOptions) {
+    // 设置初始内容
+    // if (options.content) {
+    //   this.setContent(options.content);
+    // }
+
+    // 加载插件
+    if (options.plugins) {
+      const pluginsManager = this.coreManager.getManager<PluginManager>('plugins');
+      options.plugins.forEach(plugin => pluginsManager?.loadPlugin(plugin));
+    }
+  }
+
   executeCommand(name: string, ...args: any[]) {
-    // 实现命令执行逻辑
+    const commandsManager = this.coreManager.getManager<CommandManager>('commands');
+    return commandsManager?.execute(name, ...args);
   }
 
-  // 其他核心方法...
-}
+  getSelection(): any {
+    const selectionManager = this.coreManager.getManager<SelectionManager>('selection');
+    return selectionManager?.getSelection();
+  }
 
-export { CommandManager, SelectionManager, HistoryManager, SchemaManager, PluginManager };
+  undo() {
+    const historyManager = this.coreManager.getManager<HistoryManager>('history');
+    historyManager?.undo();
+  }
+
+  redo() {
+    const historyManager = this.coreManager.getManager<HistoryManager>('history');
+    historyManager?.redo();
+  }
+
+  destroy() {
+    this.coreManager.destroy();
+  }
+}
