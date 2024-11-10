@@ -1,4 +1,4 @@
-import { NodeType, Node } from '../../types';
+import { NodeType, Node } from '../../types/nodeType';
 import { IManager } from '../IManager';
 import { EventManager} from '../EventManager';
 

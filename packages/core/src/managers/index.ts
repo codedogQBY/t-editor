@@ -1,6 +1,6 @@
 import { EventManager } from './EventManager';
 import { IManager } from './IManager';
-import { ManagerConstructor, ManagerName } from './types';
+import { ManagerConstructor, ManagerName } from '../types/managerType';
 
 type ManagerType = ManagerConstructor<IManager> | IManager | EventManager;
 class CoreManager {

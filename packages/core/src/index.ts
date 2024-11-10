@@ -1,7 +1,6 @@
 import { CoreManager } from './managers';
 import { EditorOptions } from './types';
-import { registerManagers } from './managers/registerManagers';
-import { GetManagerByName } from './managers/types';
+import { registerManagers } from './helpers/registerManagers';
 
 
 export class Editor {
@@ -20,15 +19,10 @@ export class Editor {
     this.applyOptions(options);
   }
 
-  private applyOptions(options: EditorOptions) {}
+  private applyOptions(options: EditorOptions) {
+    // 应用编辑器选项
 
-  executeCommand(name: string, ...args: any[]) {}
-
-  getSelection(): any {}
-
-  undo() {}
-
-  redo() {}
+  }
 
   destroy() {
     this.coreManager.destroy();

@@ -1,6 +1,6 @@
-import * as ManagerConfig from './manager.config';
-import { IManager } from './IManager';
-import { EventManager } from './EventManager';
+import * as ManagerConfig from '../managers/manager.config';
+import { IManager } from '../managers/IManager';
+import { EventManager } from '../managers/EventManager';
 
 type ManagerConstructor<T extends IManager> = new (eventManager: EventManager, ...args: any[]) => T;
 type ManagerMap = {

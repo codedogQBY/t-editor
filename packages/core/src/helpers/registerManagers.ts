@@ -1,6 +1,6 @@
-import * as ManagerConfig from './manager.config';
-import { CoreManager } from './index';
-import { DefaultManagerName } from './types';
+import * as ManagerConfig from '../managers/manager.config';
+import { CoreManager } from '../managers';
+import { DefaultManagerName } from '../types/managerType';
 
 
 // 注册默认的Manager
