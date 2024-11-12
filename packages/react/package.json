@@ -8,7 +8,7 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@t-editor/core": "^0.0.1",
+    "@t-editor/core": "workspace:*",
     "react": "^17.0.2"
   },
   "devDependencies": {
