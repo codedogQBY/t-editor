@@ -1,15 +1,29 @@
 import { EventManager } from './EventManager';
 import { IManager } from './IManager';
 import { ManagerConstructor, ManagerName } from '../types/managerType';
+import { EditorOptions } from '../types';
 
 type ManagerType = ManagerConstructor<IManager> | IManager | EventManager;
 class CoreManager {
   private managers: Map<ManagerName, ManagerType> = new Map();
   private readonly eventManager: EventManager;
+  private options: EditorOptions = {};
 
   constructor() {
     this.eventManager = new EventManager();
     this.managers.set('event', this.eventManager);
+  }
+
+  /**
+   * 应用编辑器选项
+   */
+  applyOptions(options: EditorOptions) {
+    this.options = options;
+    this.managers.forEach(manager => {
+      if (manager instanceof IManager) {
+        manager.applyOptions(options);
+      }
+    });
   }
 
   /**

@@ -1,4 +1,4 @@
-import { Editor } from '../../types';
+import { Editor, EditorOptions } from '../../types';
 import { IManager } from '../IManager';
 import { EventManager} from '../EventManager';
 
@@ -15,6 +15,9 @@ class PluginManager extends IManager {
 
   init() {
     // 初始化插件管理器
+  }
+  applyOptions(options: EditorOptions) {
+    const { plugins } = options;
   }
 
   destroy() {

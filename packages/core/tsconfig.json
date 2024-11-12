@@ -3,7 +3,14 @@
     "rootDir": "./src",
     "declaration": true,
     "outDir": "./dist",
-    "composite": true
+    "composite": true,
+    "lib": [
+      "decorators",
+      "dom",
+      "es5",
+      "scripthost",
+      "es2015.collection"
+    ]
   },
   "include": ["src/**/*"]
 }

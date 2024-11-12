@@ -32,6 +32,7 @@ export interface Editor {
 
 export interface EditorOptions {
   // 定义编辑器的配置选项
+  id?: string;
   content?: string;
   plugins?: string[];
   // 其他选项...

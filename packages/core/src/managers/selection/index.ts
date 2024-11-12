@@ -1,9 +1,11 @@
 import { IManager } from '../IManager';
 import { EventManager} from '../EventManager';
+import { EditorOptions } from '../../types';
 
 class SelectionManager extends IManager {
   public static readonly MANAGER_NAME = 'selection' as const;
-  private currentSelection: Selection | null = null;
+  // 编辑器挂载节点
+  private editorNode: HTMLElement | null = null;
 
   constructor(eventManager: EventManager) {
     super(eventManager);
@@ -14,22 +16,53 @@ class SelectionManager extends IManager {
   }
 
   destroy() {
-    this.currentSelection = null;
+    this.editorNode = null;
   }
 
-  updateSelection(selection: Selection) {
-    this.currentSelection = selection;
+  applyOptions(options: EditorOptions) {
+    const { id } = options;
+    this.editorNode = document.getElementById(id);
   }
+
 
   getSelection(): Selection | null {
-    return this.currentSelection;
+    const selection = window.getSelection();
+    if (!selection || selection.rangeCount === 0 || !this.editorNode || !this.editorNode.contains(selection.anchorNode)) {
+      return null;
+    }
+    return selection;
   }
 
   hasSelection(): boolean {
-    return this.currentSelection !== null && !this.currentSelection.isCollapsed;
+    const selection = this.getSelection();
+    return selection ? !selection.isCollapsed : false;
   }
 
-  // 其他与选择相关的方法...
+  // 获取range
+  getRange(): Range | null {
+    const selection = this.getSelection();
+    return selection ? selection.getRangeAt(0) : null;
+  }
+
+  // 当前选区对应的节点的mark
+  getMarks(): string[] {
+    const range = this.getRange();
+    if (!range) {
+      return [];
+    }
+    const marks: string[] = [];
+    let node = range.startContainer;
+    while (node && node !== this.editorNode) {
+      if (node.nodeType === Node.ELEMENT_NODE) {
+        const mark = (node as HTMLElement).dataset.mark;
+        if (mark) {
+          marks.push(mark);
+        }
+      }
+      node = node.parentNode;
+    }
+    return marks;
+  }
 }
 
 export { SelectionManager };

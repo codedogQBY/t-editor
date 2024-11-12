@@ -1,4 +1,5 @@
 import { EventManager} from './EventManager';
+import { EditorOptions } from '../types';
 
 /**
  * Manager基类
@@ -13,6 +14,11 @@ abstract class IManager {
 
   abstract init(): void;
   abstract destroy(): void;
+
+  /**
+   * 应用编辑器选项
+   */
+  abstract applyOptions(options: EditorOptions): void;
 
   protected emit(event: string, ...args: any[]): void {
     this.eventManager.emit(event, ...args);

@@ -1,6 +1,7 @@
 import { NodeType, Node } from '../../types/nodeType';
 import { IManager } from '../IManager';
 import { EventManager} from '../EventManager';
+import { EditorOptions } from '../../types';
 
 class SchemaManager extends IManager {
   public static readonly MANAGER_NAME = 'schema' as const
@@ -19,6 +20,9 @@ class SchemaManager extends IManager {
     // 销毁模式管理器
   }
 
+  applyOptions(options: EditorOptions) {
+
+  }
   isValidNode(node: Node): boolean {
     // 检查节点是否符合模式定义
     return this.schema.isValidNode(node);

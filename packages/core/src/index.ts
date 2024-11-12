@@ -20,8 +20,7 @@ export class Editor {
   }
 
   private applyOptions(options: EditorOptions) {
-    // 应用编辑器选项
-
+    this.coreManager.applyOptions(options);
   }
 
   destroy() {

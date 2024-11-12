@@ -1,6 +1,7 @@
 import { EditorState } from '../../types';
 import { IManager } from '../IManager';
 import { EventManager} from '../EventManager';
+import { EditorOptions } from '../../types';
 
 class HistoryManager extends IManager {
   public static readonly MANAGER_NAME = 'history' as const;
@@ -14,6 +15,8 @@ class HistoryManager extends IManager {
   init() {
     // 初始化历史管理器
   }
+
+  applyOptions(options: EditorOptions) {}
 
   destroy() {
     this.undoStack = [];
